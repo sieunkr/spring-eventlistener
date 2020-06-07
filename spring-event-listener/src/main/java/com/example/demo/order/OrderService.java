@@ -28,7 +28,7 @@ public class OrderService {
         //방법2
         try {
             order.startedPay();
-            publisher.publishEvent(new ChargeRequestEvent(this, orderId));
+            publisher.publishEvent(new ChargeRequestEvent(orderId));
             order.completedPay();
         } catch (ChargeRuntimeException ex) {
             log.error(ExceptionMessage.CHARGE_ERROR.name());    //TODO: message get

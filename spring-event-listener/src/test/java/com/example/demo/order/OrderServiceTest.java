@@ -18,8 +18,10 @@ class OrderServiceTest {
 
     @Autowired
     private OrderService orderService;
+
     @MockBean
     private OrderRepository orderRepository;
+
     @SpyBean
     private ChargeService chargeService;
 
@@ -35,5 +37,6 @@ class OrderServiceTest {
 
         //then
         verify(chargeService, times(1)).charge(orderId);
+
     }
 }

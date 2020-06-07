@@ -17,29 +17,29 @@ public class Order {
     }
 
 
-    void pay(ApplicationEventPublisher publisher) {
+    public void pay(ApplicationEventPublisher publisher) {
 
         verifyPayable();
         startedPay();
 
         try {
-            publisher.publishEvent(new ChargeRequestEvent(this, orderId));
+            publisher.publishEvent(new ChargeRequestEvent(orderId));
             completedPay();
         } catch (ChargeRuntimeException ex) {
             log.error(ExceptionMessage.CHARGE_ERROR.name());    //TODO: message get
         }
     }
 
-    void startedPay() {
+    public void startedPay() {
         this.status = OrderStatus.PAYMENT_WAITING;
     }
 
-    void completedPay() {
+    public void completedPay() {
         this.status = OrderStatus.PREPARING;
     }
 
-    private void verifyPayable() {
+    private boolean verifyPayable() {
         //TODO: 유효성 체크
-
+        return true;
     }
 }

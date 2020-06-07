@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.order;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,8 +8,13 @@ public class Order {
     private long orderId;
     private OrderStatus status;
 
+    public Order(long orderId) {
+        this.orderId = orderId;
+    }
+
     public void pay(ChargeService chargeService) {
 
+        verifyPayable();
         startedPay();
 
         try {
@@ -26,5 +31,14 @@ public class Order {
 
     private void completedPay() {
         this.status = OrderStatus.PREPARING;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    private boolean verifyPayable() {
+        //TODO: 유효성 체크
+        return true;
     }
 }
