@@ -1,6 +1,7 @@
 package com.example.demo.order;
 
 import com.example.demo.charge.ChargeService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,7 @@ class OrderServiceTest {
     private ChargeService chargeService;
 
     @Test
+    @DisplayName("주문에서 이벤트를 발생해서 결제 요청이 잘 되는지?")
     void payTest() {
 
         //given
